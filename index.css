@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+    --primary-blue: #00d2ff;
+    --secondary-blue: #3a7bd5;
+    --light-blue: #e0f7fa;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-color: #ffffff;
+    --termo-green: #3aa394; /* Verde clássico do Termo */
+    --termo-red: #e74c3c; /* Vermelho para derrota */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    background-attachment: fixed;
+    overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+body.vitoria {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+body.derrota {
+    background: linear-gradient(135deg, #cb2d3e, #ef473a);
+}
+
+.container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: center;
+    width: 90%;
+    max-width: 550px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--light-blue);
+    margin-bottom: 1.5rem;
+}
+
+/* Inputs de Texto */
+input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: 2px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilo TERMO */
+.word-slots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.letter-slot {
+    width: 55px;
+    height: 55px;
+    border: 2px solid var(--glass-border);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.letter-slot:not(:empty) {
+    animation: popIn 0.4s ease;
+    background: var(--termo-green);
+    border-color: var(--termo-green);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.letter-slot.revelada {
+    background: var(--termo-red) !important;
+    border-color: var(--termo-red) !important;
+    opacity: 0.9;
+}
+
+.status-info {
+    margin: 1.5rem 0;
+    color: white;
+}
+
+#error-count {
+    font-weight: 800;
+    color: #ffeb3b;
+}
+
+#game-message {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-height: 24px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    background: white;
+    color: var(--secondary-blue);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: var(--light-blue);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    40% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Seleção de Dificuldade */
+.difficulty-selector {
+    margin-top: 20px;
+    color: white;
+}
+
+.difficulty-selector p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.difficulty-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-diff {
+    flex: 1;
+    padding: 10px 5px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: white;
+    box-shadow: none;
+    margin-top: 0;
+}
+
+.btn-diff:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-diff.active {
+    background: white;
+    color: var(--secondary-blue);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 480px) {
+    .container { padding: 1.5rem; }
+    h1 { font-size: 1.8rem; }
+    .letter-slot { width: 45px; height: 45px; font-size: 1.8rem; }
+    .difficulty-options { flex-direction: column; }
+}

@@ -1,41 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Jogo das Palavras</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1>Jogo da Memória</h1>
-    <div id="info">
-        <span>
-            Tempo:
-            <span id="timer">60</span> segundos
-            <span>
-                | Acertos:
-                <span id="score">0</span>
-            </span>
-        </span>
-    </div>
+    <div class="container">
+        <h1>Jogo das Palavras</h1>
+        <h2>Desenvolvido por: Felipe Zotelli</h2>
 
-    <div class="game-board" id="game-board">
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
-        <div class="class"></div>
+        <div id="setup-container">
+            <input onkeydown="iniciarJogo(event)" type="text" id="nickname-input" placeholder="Digite seu nickname...">
+            
+            <div class="difficulty-selector">
+                <p>Selecione a Dificuldade:</p>
+                <div class="difficulty-options">
+                    <button onclick="setDificuldade('facil')" class="btn-diff active" id="btn-facil">Fácil</button>
+                    <button onclick="setDificuldade('medio')" class="btn-diff" id="btn-medio">Médio</button>
+                    <button onclick="setDificuldade('dificil')" class="btn-diff" id="btn-dificil">Difícil</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-container" class="hidden">
+            <h2 id="player-display"></h2>
+            
+            <p id="hint-display" style="font-style: italic; color: #00ffb7; margin-bottom: 10px; font-weight: bold;"></p>
+
+            <div id="word-display" class="word-slots"></div>
+            
+            <input onkeydown="tentarLetra(event)" type="text" id="letter-input" maxlength="1" placeholder="Digite uma letra">
+
+            <div class="status-info">
+                <p>Erros: <span id="error-count">0</span> / 4</p>
+                <p id="game-message"></p>
+            </div>
+            
+            <button onclick="reiniciarJogo()" id="reset-btn" class="hidden">Jogar Novamente</button>
+        </div>
     </div>
+    <script src="index.js"></script>
+
+    <audio id="audio-derrota" src="audio1.wav"></audio>
+    <audio id="audio-vitoria" src="audio2.wav"></audio>
 </body>
 </html>
